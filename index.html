@@ -1,66 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css" type="text/css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel='stylesheet' href='styles.css' type='text/css'>
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x' crossorigin='anonymous'>
 <title>Weather App</title> 
 </head>
 <body>
-    <div id ="currentDay">
-        <h2 class="day"></h2>
-        <h2 class="date"></h2>
-        <img class="weatherIcon" src="https://openweathermap.org/img/w/${array[i].weather[0].icon}.png" alt="Weather Icon">
-        <h2 class="temperatureMin"></h2>
-        <h2 class="temperatureMax"></h2>
-        <h2 class="windSpeed"></h2>
-        <h2 class="humidity"></h2>
-    </div>
-    <div id="fiveDayForecast"></div>
-        <div id="forecastDay1">
-            <h2 class="date"></h2>
-            <img class="weatherIcon" src="https://openweathermap.org/img/w/${array[i].weather[0].icon}.png" alt="Weather Icon">
-            <h2 class="temperatureMin"></h2>
-            <h2 class="temperatureMax"></h2>
-            <h2 class="windSpeed"></h2>
-            <h2 class="humidity"></h2>
-        </div>
-        <div id="forecastDay2">
-            <h2 class="date"></h2>
-            <img src="" alt="Weather Icon" class="weatherIcon"></img>
-            <h2 class="temperatureMin"></h2>
-            <h2 class="temperatureMax"></h2>
-            <h2 class="windSpeed"></h2>
-            <h2 class="humidity"></h2>
-            <h2 class="uvi"></h2>
-        </div>
-        <div id="forecastDay3">
-            <h2 class="date"></h2>
-            <img src="" alt="Weather Icon" class="weatherIcon"></img>
-            <h2 class="temperatureMin"></h2>
-            <h2 class="temperatureMax"></h2>
-            <h2 class="windSpeed"></h2>
-            <h2 class="humidity"></h2>
-        </div>
-        <div id="forecastDay4">
-            <h2 class="date"></h2>
-            <img src="" alt="Weather Icon" class="weatherIcon"></img>
-            <h2 class="temperatureMin"></h2>
-            <h2 class="temperatureMax"></h2>
-            <h2 class="windSpeed"></h2>
-            <h2 class="humidity"></h2>
-        </div>
-        <div id="forecastDay5">
-            <h2 class="date"></h2>
-            <img src="" alt="Weather Icon" class="weatherIcon"></img>
-            <h2 class="temperatureMin"></h2>
-            <h2 class="temperatureMax"></h2>
-            <h2 class="windSpeed"></h2>
-            <h2 class="humidity"></h2>
+    <div class='jumbotron'>
+        <div class='container border border-dark rounded'>
+            <h1>Weather App</h1>
+            <div class='row'>
+                <div class='col'>
+                    <input type='text' class='form-control' placeholder='Type City Here.' id='cityUserInput'>
+                </div>
+                <div class='col'>
+                    <button type='button' class='btn btn-secondary' id="searchButton">Search</button>
+                </div>
+            </div>
         </div>
     </div>
-    <script type="text/javascript" src="script.js"></script>
+    <div id ='currentDay' class= 'container border border-dark rounded'>
+        <h1>Current Weather</h1>
+        <div class='container border border-dark rounded col-3'>
+            <h4 id='day'></h4>
+            <h4 id='currentDate'></h4>
+            <h4 id='currentWeather'></h4>
+            <img src='' alt='Weather Icon' id='currentWeatherIcon'></img>
+            <h4 id='currentTemperature'></h4>
+            <h4 id='currentWindSpeed'></h4>
+            <h4 id='currentHumidity'></h4>
+            <div class='container border border-dark rounded col-8'></div>
+            <h4 class='currentUvi'></h4>
+        </div>
+    </div>
+    <div id='fiveDayForecast' class = 'container border border-dark rounded'>
+        <div class='row justify-content-around'>
+                <h1>Five Day Forecast</h1>
+                <div id='forecastDay1' class='col-2 border border-dark rounded'>
+                    <h4 class='date'></h4>
+                    <h4 class='weather'></h4>
+                    <img src='' alt='Weather Icon' class='weatherIcon'></img>
+                    <h4 class='temperatureMax'></h4>
+                    <h4 class='temperatureMin'></h4>
+                    <h4 class='windSpeed'></h4>
+                    <h4 class='humidity'></h4>
+                    <h4 class='uvi'></h4>
+                </div>
+                <div id='forecastDay2' class='col-2 border border-dark rounded'>
+                    <h4 class='date'></h4>
+                    <h4 class='weather'></h4>
+                    <img src='' alt='Weather Icon' class='weatherIcon'></img>
+                    <h4 class='temperatureMax'></h4>
+                    <h4 class='temperatureMin'></h4>
+                    <h4 class='windSpeed'></h4>
+                    <h4 class='humidity'></h4>
+                    <h4 class='uvi'></h4>
+                </div>
+                <div id='forecastDay3' class='col-2 border border-dark rounded'>
+                    <h4 class='date'></h4>
+                    <h4 class='weather'></h4>
+                    <img src='' alt='Weather Icon' class='weatherIcon'></img>
+                    <h4 class='temperatureMax'></h4>
+                    <h4 class='temperatureMin'></h4>
+                    <h4 class='windSpeed'></h4>
+                    <h4 class='humidity'></h4>
+                    <h4 class='uvi'></h4>
+                </div>
+                <div id='forecastDay4' class='col-2 border border-dark rounded'>
+                    <h4 class='date'></h4>
+                    <h4 class='weather'></h4>
+                    <img src='' alt='Weather Icon' class='weatherIcon'></img>
+                    <h4 class='temperatureMax'></h4>
+                    <h4 class='temperatureMin'></h4>
+                    <h4 class='windSpeed'></h4>
+                    <h4 class='humidity'></h4>
+                    <h4 class='uvi'></h4>
+                </div>
+                <div id='forecastDay5' class='col-2 border border-dark rounded'>
+                    <h4 class='date'></h4>
+                    <h4 class='weather'></h4>
+                    <img src='' alt='Weather Icon' class='weatherIcon'></img>
+                    <h4 class='temperatureMax'></h4>
+                    <h4 class='temperatureMin'></h4>
+                    <h4 class='windSpeed'></h4>
+                    <h4 class='humidity'></h4>
+                    <h4 class='uvi'></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type='text/javascript' src='script.js'></script>
 </body>
 </html>
