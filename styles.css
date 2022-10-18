@@ -1,3 +1,14 @@
 body {
-    background-color: #007bff;
+    background-color: #00356e;
+}
+.text-primary{
+    text: #00356e;
+}
+.uvi {
+    background-color:black;
+    margin: 0;
+    text-align: center;
+}
+h4 {
+    white-space: nowrap;
 }

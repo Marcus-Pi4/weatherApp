@@ -2,7 +2,7 @@
 
 const search = document.getElementById('searchButton');
 search.addEventListener('click', searchBarFunction);
-// document.body.createElement('button').className = "bg-dark";
+
 //initiates search when search button is clicked;
 function searchBarFunction(event) {
     event.preventDefault();
@@ -11,22 +11,21 @@ function searchBarFunction(event) {
     let input = document.getElementById('cityUserInput').value;
     localStorage.setItem('previousCitySearch', input);
 
-    //Creates a button with the localStorage variable value, which when clicked, will initiate a search with that value
-    const createButton = document.createElement('button');
-    const getButtonDiv = document.getElementById("previousSearchButtons");
-    const localStorageCityName = localStorage.getItem('previousCitySearch');
-    getButtonDiv.appendChild(createButton).setAttribute('id',`${localStorageCityName}`);
-    document.getElementById(`${localStorageCityName}`).classList.add('btn', 'btn-primary', 'mx-2');
-    getButtonDiv.appendChild(createButton).innerText = localStorageCityName;
-    document.getElementById(`${localStorageCityName}`).addEventListener('click',findCityLatAndLon(localStorageCityName))
-
-
-
+    //Creates a button with the localStorage variable value, which when clicked, will initiate a search with that value, if no repeated buttons are present
+    if (document.getElementById(`${localStorage.getItem('previousCitySearch')}`) === null) {
+        const createButton = document.createElement('button');
+        const getButtonDiv = document.getElementById("previousSearchButtons");
+        const localStorageCityName = localStorage.getItem('previousCitySearch');
+        getButtonDiv.appendChild(createButton).setAttribute('id',`${localStorageCityName}`);
+        document.getElementById(localStorageCityName).classList.add('btn', 'btn-primary', 'mx-2');
+        getButtonDiv.appendChild(createButton).innerText = localStorageCityName;
+        document.getElementById(localStorageCityName).addEventListener('click', () => {findCityLatAndLon(localStorageCityName)});
+    }
     findCityLatAndLon(input);
 
     //makes hidden elements visible on search
-    document.getElementById('fiveDayForecast').className = 'container bg-light border border-primary rounded d-block';
     document.getElementById('currentDay').className = 'container bg-light border border-primary rounded d-block';
+    document.getElementById('fiveDayForecast').className = 'container bg-light border border-primary rounded d-block';
 };
 //fetches the coordinates for a city input to be put into the one call api
 function findCityLatAndLon(city){
@@ -76,6 +75,7 @@ function displayForecast(coords){
     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=d91f911bcf2c0f925fb6535547a5ddc9&units=imperial`)
         .then(response => response.json())
         .then(weatherData => { 
+            console.log(weatherData);
             document.getElementById('currentCity').innerHTML = `Current Weather: ${document.getElementById('cityUserInput').value}`;
             document.getElementById('currentUviBackground').style.backgroundColor = uvIndex(parseInt(weatherData.current.uvi));
             document.getElementById('currentUvi').innerHTML = `UVI: ${weatherData.current.uvi}`;
