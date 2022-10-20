@@ -35,7 +35,7 @@ function searchBarFunction(event) {
 };
 //fetches the coordinates for a city input to be put into the one call api
 function findCityLatAndLon(city){
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appId=d91f911bcf2c0f925fb6535547a5ddc9&units=imperial`).then(response => response.json()).then(weatherData => {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appId=d91f911bcf2c0f925fb6535547a5ddc9&units=imperial`).then(response => response.json()).then(weatherData => {
         displayForecast(weatherData.coord);
         let coordinates = [weatherData.coord.lat, weatherData.coord.lon];
         console.log(coordinates);
@@ -88,7 +88,7 @@ function displayForecast(coords){
             document.getElementById('day').innerHTML = displayDate()[0];
             document.getElementById('currentDate').innerHTML =  `${displayDate()[1]} ${parseInt(displayDate()[2])}`
             console.log(weatherData.current.weather[0].description);
-            document.getElementById('currentWeatherIcon').src = `http://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`
+            document.getElementById('currentWeatherIcon').src = `https://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`
             document.getElementById('currentWeather').innerHTML = weatherData.current.weather[0].description;
             document.getElementById('currentTemperature').innerHTML = `Temperature: ${weatherData.current.temp} F`;
             document.getElementById('currentWindSpeed').innerHTML = `Wind: ${weatherData.current.wind_speed} mph`;
@@ -97,7 +97,7 @@ function displayForecast(coords){
                 console.log(weatherData);
                 document.getElementsByClassName('uvi')[i].style.backgroundColor = uvIndex(parseInt(weatherData.daily[i].uvi));
                 document.getElementsByClassName('uvi')[i].innerHTML = `UVI: ${weatherData.daily[i].uvi}`;
-                document.getElementsByClassName('weatherIcon')[i].src = `http://openweathermap.org/img/wn/${weatherData.daily[i].weather[0].icon}@2x.png`;
+                document.getElementsByClassName('weatherIcon')[i].src = `https://openweathermap.org/img/wn/${weatherData.daily[i].weather[0].icon}@2x.png`;
                 document.getElementsByClassName('weather')[i].innerHTML = weatherData.daily[i].weather[0].description;
                 document.getElementsByClassName('date')[i].innerHTML = `${displayDate()[1]}, ${parseInt(displayDate()[2]) + (1 + i) }`;
                 document.getElementsByClassName('temperatureMin')[i].innerHTML = `Low: ${weatherData.daily[i].temp.min} F`;
