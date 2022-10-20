@@ -1,7 +1,13 @@
 
 
-const search = document.getElementById('searchButton');
-search.addEventListener('click', searchBarFunction);
+const searchButton = document.getElementById('searchButton');
+searchButton.addEventListener('click', searchBarFunction);
+const searchBar = document.getElementById('cityUserInput');
+searchBar.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        searchBarFunction(event);
+    }
+});
 
 //initiates search when search button is clicked;
 function searchBarFunction(event) {
