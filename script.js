@@ -36,9 +36,7 @@ function searchBarFunction(event) {
 //fetches the coordinates for a city input to be put into the one call api
 function findCityLatAndLon(city){
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appId=d91f911bcf2c0f925fb6535547a5ddc9&units=imperial`).then(response => response.json()).then(weatherData => {
-        displayForecast(weatherData.coord);
-        let coordinates = [weatherData.coord.lat, weatherData.coord.lon];
-        console.log(coordinates);
+        displayForecast(weatherData.coord, city);
     })
 };
 //displays date for forecast
@@ -75,14 +73,14 @@ function uvIndex(uviNumber) {
     }
 };
 //inputs coordinates for one call api, calls it, then appends current day weather, then loops through 5 day forecast.
-function displayForecast(coords){
+function displayForecast(coords, city){
     const lat = coords.lat;
     const lon = coords.lon;
     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=d91f911bcf2c0f925fb6535547a5ddc9&units=imperial`)
         .then(response => response.json())
         .then(weatherData => { 
             console.log(weatherData);
-            document.getElementById('currentCity').innerHTML = `Current Weather: ${document.getElementById('cityUserInput').value}`;
+            document.getElementById('currentCity').innerHTML = `Current Weather: ${city}`;
             document.getElementById('currentUviBackground').style.backgroundColor = uvIndex(parseInt(weatherData.current.uvi));
             document.getElementById('currentUvi').innerHTML = `UVI: ${weatherData.current.uvi}`;
             document.getElementById('day').innerHTML = displayDate()[0];
